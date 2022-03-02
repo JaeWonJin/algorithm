@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <queue>
+#include <algorithm>
 using namespace std;
 
 #define SIZE 100001
@@ -18,6 +19,7 @@ int ex = 0;
 int fish_num = 0;
 int jump = 0;
 int ans = 0;
+vector<pair<int, int>> points;
 
 void displayBoard(void) {
 	for (int j = 0; j < N; j++) {
@@ -29,11 +31,17 @@ void displayBoard(void) {
 	cout << "\n";
 }
 
+void printpoints(void) {
+	for (int i = 0; i < points.size(); i++) {
+		cout << "(" << points[i].second << ", " << points[i].first << ") ";
+	}
+	cout << "\n";
+}
+
 void BFS(void) {
 	while (!Q.empty() && fish_num) {
 		int rep = Q.size();
 		tme++;
-		//displayBoard();
 		for (int i = 0; i < rep; i++) {
 			pair<int, int> t = Q.front();
 			Q2.push(t);
@@ -45,35 +53,10 @@ void BFS(void) {
 				int newx = dx[k] + x;
 				int newy = dy[k] + y;
 				if (newx >= 0 && newx < N && newy >= 0 && newy < N) {
-					if (board[newy][newx]>0 && board[newy][newx]<9 && baby_size > board[newy][newx]) {
-						ex++;
-						fish_num--;
-						if (ex >= baby_size) {
-							ex = 0;
-							baby_size += 1;
-						}
-						while (!Q.empty()) {
-							pair<int, int>tmp = Q.front();
-							board[tmp.second][tmp.first] -= 9;
-							Q.pop();
-						}
-						while (!Q2.empty()) {
-							pair<int, int>tmp = Q2.front();
-							board[tmp.second][tmp.first] -= 9;
-							Q2.pop();
-						}
-						board[newy][newx] = 9;
-						if (!fish_num) {
-							ans+=tme;
-							return;
-						}
+					if (board[newy][newx] > 0 && board[newy][newx]<9 && baby_size > board[newy][newx]) {
+						board[newy][newx] += 9;
 						Q.push(make_pair(newx, newy));
-						ans += tme;
-						tme = 0;
-						cout << baby_size <<":"<<ex<<" "<< ans << "\n";
-						displayBoard();
-						jump = 1;
-						break;
+						points.push_back(make_pair(newy, newx));
 					}
 					else if (baby_size == board[newy][newx] || !board[newy][newx]) {
 						board[newy][newx] += 9;
@@ -81,9 +64,41 @@ void BFS(void) {
 					}
 				}
 			}
-			if (jump) {
-				jump = 0;
-				break;
+
+		}
+		if (!points.empty()) {
+			ex++;
+			fish_num--;
+			if (ex >= baby_size) {
+				ex = 0;
+				baby_size += 1;
+			}
+			while (!Q.empty()) {
+				pair<int, int>tmp = Q.front();
+				board[tmp.second][tmp.first] -= 9;
+				Q.pop();
+			}
+			while (!Q2.empty()) {
+				pair<int, int>tmp = Q2.front();
+				board[tmp.second][tmp.first] -= 9;
+				Q2.pop();
+			}
+			ans += tme;
+			tme = 0;
+			//printpoints();
+			sort(points.begin(), points.end());
+			//printpoints();
+
+			int newx = points[0].second;
+			int newy = points[0].first;
+
+			board[newy][newx] = 9;
+			Q.push(make_pair(newx, newy));
+			points.clear();
+			//displayBoard();
+
+			if (!fish_num) {
+				return;
 			}
 		}
 	}
@@ -103,7 +118,7 @@ int main(void) {
 		}
 	}
 	BFS();
-	displayBoard();
+	//displayBoard();
 	cout << ans << "\n";
 
 }
