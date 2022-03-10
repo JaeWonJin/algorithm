@@ -1,0 +1,4 @@
+﻿  소스.cpp
+C:\Users\djdla\source\repos\별자리 만들기(4386)\별자리 만들기(4386)\소스.cpp(47,21): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\djdla\source\repos\별자리 만들기(4386)\별자리 만들기(4386)\소스.cpp(55,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  별자리 만들기(4386).vcxproj -> C:\Users\djdla\source\repos\별자리 만들기(4386)\Debug\별자리 만들기(4386).exe
