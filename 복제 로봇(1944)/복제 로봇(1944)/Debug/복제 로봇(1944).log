@@ -1,0 +1,9 @@
+﻿  소스.cpp
+C:\Users\djdla\source\repos\복제 로봇(1944)\복제 로봇(1944)\소스.cpp(32,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\djdla\source\repos\복제 로봇(1944)\복제 로봇(1944)\소스.cpp(33,21): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\djdla\source\repos\복제 로봇(1944)\복제 로봇(1944)\소스.cpp(60,25): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\djdla\source\repos\복제 로봇(1944)\복제 로봇(1944)\소스.cpp(106,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\djdla\source\repos\복제 로봇(1944)\복제 로봇(1944)\소스.cpp(109,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\djdla\source\repos\복제 로봇(1944)\복제 로봇(1944)\소스.cpp(116,20): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\djdla\source\repos\복제 로봇(1944)\복제 로봇(1944)\소스.cpp(129,22): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  복제 로봇(1944).vcxproj -> C:\Users\djdla\source\repos\복제 로봇(1944)\Debug\복제 로봇(1944).exe
