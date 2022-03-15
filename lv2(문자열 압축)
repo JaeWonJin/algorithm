@@ -1,0 +1,71 @@
+#include <string>
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+int min(int x, int y){
+    if(x<y) return x;
+    return y;
+}
+
+int compressed_string(string s, int leng){
+    int ret=s.size();
+    string str="";
+    for(int i=0; i<s.size(); ){
+        string compare ="";
+        if(i+leng>=s.size()) {
+            while(i<s.size()){
+                str+=s[i];
+                i++;
+            }
+            break;
+        }
+        for(int j=0; j<leng; j++){
+            compare+=s[i+j];
+        }
+        i+=leng;
+        
+        int cnt=1;
+        
+        while(i<s.size()){
+            int check=1;
+            for(int idx=0; idx<leng; idx++){
+                if(i+idx>=s.size() || compare[idx]!=s[i+idx]){
+                    check=0;
+                    break;
+                }
+            }
+            if(check==0){
+                break;
+            }
+            i+=leng;
+            cnt++;
+            ret-=leng;
+        }
+        if(cnt>1){
+            while(cnt){
+                ret+=1;
+                cnt/=10;
+            }
+        }
+        str+=compare;
+        compare.clear();
+        
+    }
+    //cout<<str<<" "<<str.size()<<"\n";
+    return ret;
+}
+
+int solution(string s) {
+    int ans = s.size();
+    int rep = s.size()/2;
+    for(int leng=1; leng<=rep; leng++){
+        int com = compressed_string(s,leng);
+        if(com<ans){
+            ans=com;
+        }
+        //cout<<ans<<"\n";
+    }
+    return ans;
+}
